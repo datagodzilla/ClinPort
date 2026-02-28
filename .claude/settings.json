@@ -1,0 +1,156 @@
+{
+  "$schema": "https://claude.ai/code/settings-schema.json",
+  "permissions": {
+    "allow": [
+      "Read(**/docs/**)",
+      "Read(**/analysis/**)",
+      "Read(**/research/**)",
+      "Read(**/*.md)",
+      "Read(**/*.txt)",
+      "Read(**/*.pdf)",
+      "Write(**/docs/**)",
+      "Write(**/analysis/**)",
+      "Write(**/output/**)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(wc:*)",
+      "Bash(date:*)",
+      "Bash(mkdir:*)",
+      "Bash(chmod:*)",
+      "WebFetch(*)",
+      "WebSearch(*)",
+      "Bash(gh:auth *)",
+      "Bash(gh:repo clone *)",
+      "Bash(gh:repo view *)",
+      "Bash(gh:api *)",
+      "Bash(gh:run *)",
+      "Bash(git:add *)",
+      "Bash(git:commit *)",
+      "Bash(git:push origin main)",
+      "Bash(git:push origin master)",
+      "Bash(git:status)",
+      "Bash(git:log *)",
+      "Bash(git:clone *)",
+      "Bash(git:config *)",
+      "Read(/tmp/github-pages-*/**)",
+      "Write(/tmp/github-pages-*/**)",
+      "Bash(rm:-rf /tmp/github-pages-*)",
+      "Bash(curl:-I *)"
+    ],
+    "deny": [
+      "Write(**/.claude/settings*)",
+      "Write(**/.claude/hooks/*)",
+      "Write(**/CLAUDE.md)",
+      "Write(**/.env*)",
+      "Write(**/*.key)",
+      "Write(**/*.pem)",
+      "Write(**/.git/**)",
+      "Edit(**/.claude/settings*)",
+      "Edit(**/.claude/hooks/*)",
+      "Edit(**/CLAUDE.md)",
+      "Edit(**/.env*)",
+      "Edit(**/.git/**)",
+      "Bash(rm:-rf *)",
+      "Bash(git:push --force*)",
+      "Bash(git:reset --hard*)",
+      "Bash(git:push -f *)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/safety-guard.sh",
+            "timeout": 5000
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/tool-logger.sh",
+            "timeout": 3000
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/tool-logger.sh",
+            "timeout": 3000
+          }
+        ]
+      },
+      {
+        "matcher": "Read|WebFetch|WebSearch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/research-logger.sh",
+            "timeout": 5000
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/enhance-markdown.sh",
+            "timeout": 5000
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/format-markdown.sh",
+            "timeout": 10000
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "permission_prompt|idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/notify-completion.sh",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/stop-guard.sh",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/session-summary.sh",
+            "timeout": 30000
+          }
+        ]
+      }
+    ]
+  }
+}

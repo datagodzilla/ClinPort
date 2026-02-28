@@ -1,0 +1,2 @@
+{"timestamp":"2025-11-30T17:32:21Z","tool":"Bash","status":"blocked","reason":"Blocked: Destructive rm command detected"}
+{"timestamp":"2025-11-30T17:32:23Z","tool":"Write","status":"blocked","reason":"Blocked: Cannot modify Claude configuration files (.claude/settings*, .claude/hooks/*, CLAUDE.md)"}

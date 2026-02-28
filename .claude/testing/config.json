@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UI Testing Configuration",
+  "version": "1.0.0",
+
+  "browser": {
+    "default": "chromium",
+    "headless": false,
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "timeout": 30000,
+    "slowMo": 0
+  },
+
+  "screenshots": {
+    "enabled": true,
+    "path": "./screenshots",
+    "fullPage": true,
+    "format": "png",
+    "quality": 90,
+    "naming": {
+      "pattern": "{timestamp}-{testName}-{step}",
+      "timestamp_format": "%Y%m%d-%H%M%S"
+    }
+  },
+
+  "selectors": {
+    "strategy": "accessibility-first",
+    "fallbacks": ["data-testid", "role", "text", "css"]
+  },
+
+  "waits": {
+    "networkIdle": 2000,
+    "elementVisible": 5000,
+    "animation": 500
+  },
+
+  "debugging": {
+    "consoleLogging": true,
+    "networkLogging": true,
+    "screenshotOnFailure": true,
+    "traceOnFailure": true
+  },
+
+  "environments": {
+    "local": {
+      "baseUrl": "http://localhost:3000"
+    },
+    "staging": {
+      "baseUrl": "https://staging.example.com"
+    },
+    "production": {
+      "baseUrl": "https://example.com"
+    }
+  },
+
+  "reports": {
+    "path": "./reports",
+    "formats": ["json", "html"],
+    "includeScreenshots": true,
+    "includeTrace": true
+  }
+}

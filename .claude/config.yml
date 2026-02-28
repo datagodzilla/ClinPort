@@ -1,0 +1,147 @@
+# NotebookLM Profile Configuration
+version: 1.0.0
+profile: notebooklm
+description: Google NotebookLM-style learning artifact generation
+
+# =============================================================================
+# Python Environment Configuration
+# =============================================================================
+python:
+  venv_path: .venv
+  python_executable: .venv/bin/python
+  pip_executable: .venv/bin/pip
+  activate_command: source .venv/bin/activate
+  use_venv: true
+  version: "3.12"
+  packages:
+    # NotebookLM Core Features
+    - edge-tts          # Text-to-speech for podcasts
+    - pydub             # Audio processing
+    - yt-dlp            # YouTube transcript extraction
+    # Document processing
+    - pypdf             # PDF parsing
+    - python-docx       # Word documents
+    - pandas            # Data manipulation
+    # Visualization
+    - plotly            # Interactive visualizations
+    - matplotlib        # Static visualizations
+
+# =============================================================================
+# Profile Characteristics
+# =============================================================================
+learning_focused: true
+artifact_generation: true
+multimedia_output: true
+default_project_type: notebooklm
+
+# Claude Code integration
+claude_code_commands: true
+use_claude_code_subagents: true
+
+# Core capabilities
+capabilities:
+  source_ingestion:
+    enabled: true
+    formats: [pdf, docx, csv, excel, text, jpg, png, gif, mp3, mp4, youtube]
+  artifact_generation:
+    enabled: true
+    types: [podcast, quiz, flashcards, mindmap, slides, infographic, comic, report]
+  audio_synthesis:
+    enabled: true
+    engine: edge-tts
+
+# Artifact types
+artifacts:
+  podcast:
+    format: mp3
+    script_format: markdown
+    hosts: 2
+    style: conversational
+  quiz:
+    formats: [multiple_choice, true_false, short_answer]
+    difficulty_levels: [easy, medium, hard]
+  flashcards:
+    format: markdown
+    fields: [front, back, tags]
+  mindmap:
+    formats: [mermaid, text, json]
+  slides:
+    format: markdown
+    include_speaker_notes: true
+  infographic:
+    format: markdown
+    sections: [stats, process, comparison]
+  comic:
+    format: markdown
+    panels: variable
+  report:
+    format: markdown
+    sections: [summary, findings, evidence, recommendations]
+
+# Folder organization
+folder_structure:
+  sources_root: sources/
+  artifacts_root: artifacts/
+  podcasts: artifacts/podcasts/
+  quizzes: artifacts/quizzes/
+  flashcards: artifacts/flashcards/
+  mindmaps: artifacts/mindmaps/
+  slides: artifacts/slides/
+  infographics: artifacts/infographics/
+  comics: artifacts/comics/
+  reports: artifacts/reports/
+
+# Command availability
+commands:
+  count: 11
+  types:
+    - notebooklm_ingest_sources
+    - notebooklm_generate_all
+    - notebooklm_generate_podcast
+    - notebooklm_generate_podcast_audio
+    - notebooklm_generate_quiz
+    - notebooklm_generate_flashcards
+    - notebooklm_generate_mindmap
+    - notebooklm_generate_slides
+    - notebooklm_generate_infographic
+    - notebooklm_generate_comic
+    - notebooklm_generate_report
+
+# Audio configuration
+audio:
+  tts_engine: edge-tts
+  default_voice: en-US-AriaNeural
+  alternate_voice: en-US-GuyNeural
+  output_format: mp3
+  sample_rate: 24000
+
+# =============================================================================
+# MCP Server Configuration
+# =============================================================================
+mcp_servers:
+  playwright:
+    enabled: true
+    description: "Browser automation for web content extraction"
+    capabilities:
+      - browser_navigate
+      - browser_snapshot
+      - browser_take_screenshot
+      - browser_click
+      - browser_evaluate
+      - browser_wait_for
+      - browser_close
+      - browser_resize
+    use_cases:
+      - "Extract content from web articles"
+      - "Capture YouTube video information"
+      - "Handle dynamic content loading"
+      - "Screenshot reference materials"
+
+# Web extraction configuration
+web_extraction:
+  enabled: true
+  defaults:
+    viewport_width: 1280
+    viewport_height: 720
+    wait_timeout: 30000
+    lazy_load_scroll: true

@@ -1,0 +1,28 @@
+{
+  "environments": {
+    "local": {
+      "base_url": "http://localhost:3000",
+      "api_url": "http://localhost:8000"
+    },
+    "staging": {
+      "base_url": "https://staging.example.com",
+      "api_url": "https://api.staging.example.com"
+    },
+    "production": {
+      "base_url": "https://example.com",
+      "api_url": "https://api.example.com"
+    }
+  },
+  "test_urls": {
+    "github_pages": "https://datagodzilla.github.io",
+    "example": "https://example.com",
+    "httpbin": "https://httpbin.org",
+    "jsonplaceholder": "https://jsonplaceholder.typicode.com"
+  },
+  "common_pages": {
+    "login": "/login",
+    "dashboard": "/dashboard",
+    "settings": "/settings",
+    "profile": "/profile"
+  }
+}

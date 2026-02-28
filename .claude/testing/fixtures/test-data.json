@@ -1,0 +1,104 @@
+{
+  "users": {
+    "admin": {
+      "email": "admin@example.com",
+      "password": "admin_test_password",
+      "role": "administrator"
+    },
+    "standard": {
+      "email": "user@example.com",
+      "password": "user_test_password",
+      "role": "user"
+    },
+    "readonly": {
+      "email": "viewer@example.com",
+      "password": "viewer_test_password",
+      "role": "viewer"
+    }
+  },
+
+  "viewports": {
+    "desktop_large": { "width": 1920, "height": 1080 },
+    "desktop": { "width": 1366, "height": 768 },
+    "laptop": { "width": 1280, "height": 800 },
+    "tablet_landscape": { "width": 1024, "height": 768 },
+    "tablet_portrait": { "width": 768, "height": 1024 },
+    "mobile_large": { "width": 414, "height": 896 },
+    "mobile": { "width": 375, "height": 667 },
+    "mobile_small": { "width": 320, "height": 568 }
+  },
+
+  "formData": {
+    "contactForm": {
+      "name": "Test User",
+      "email": "test@example.com",
+      "phone": "+1234567890",
+      "message": "This is a test message for form validation."
+    },
+    "signupForm": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@example.com",
+      "password": "SecurePass123!",
+      "confirmPassword": "SecurePass123!"
+    },
+    "loginForm": {
+      "email": "user@example.com",
+      "password": "user_test_password"
+    },
+    "searchForm": {
+      "query": "test search query"
+    }
+  },
+
+  "invalidInputs": {
+    "emails": [
+      "notanemail",
+      "missing@domain",
+      "@nodomain.com",
+      "spaces in@email.com",
+      "double@@at.com"
+    ],
+    "passwords": {
+      "tooShort": "abc",
+      "noNumbers": "abcdefgh",
+      "noLetters": "12345678",
+      "noSpecial": "Password1"
+    }
+  },
+
+  "timeouts": {
+    "short": 3000,
+    "medium": 10000,
+    "long": 30000,
+    "pageLoad": 60000,
+    "networkIdle": 2000
+  },
+
+  "selectors": {
+    "common": {
+      "navigation": "nav, [role='navigation']",
+      "mainContent": "main, [role='main']",
+      "footer": "footer, [role='contentinfo']",
+      "submitButton": "button[type='submit']",
+      "formError": ".error, .invalid-feedback, [aria-invalid='true']",
+      "modal": ".modal, [role='dialog']",
+      "hamburgerMenu": ".menu-toggle, .hamburger, [aria-label='Menu']"
+    }
+  },
+
+  "environments": {
+    "local": {
+      "baseUrl": "http://localhost:3000",
+      "apiUrl": "http://localhost:3000/api"
+    },
+    "staging": {
+      "baseUrl": "https://staging.example.com",
+      "apiUrl": "https://staging.example.com/api"
+    },
+    "production": {
+      "baseUrl": "https://example.com",
+      "apiUrl": "https://example.com/api"
+    }
+  }
+}

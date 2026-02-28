@@ -1,0 +1,40 @@
+{
+  "timestamp": "2025-11-30T17:32:36Z",
+  "tool": "Read",
+  "phase": "pre",
+  "status": "initiated",
+  "session": "test-123",
+  "detail": {
+    "file": "/tmp/test.md"
+  }
+}
+{
+  "timestamp": "2025-11-30T17:32:50Z",
+  "tool": "Read",
+  "phase": "pre",
+  "status": "initiated",
+  "session": "test-123",
+  "detail": {
+    "file": "/tmp/test.md"
+  }
+}
+{
+  "timestamp": "2025-11-30T17:33:08Z",
+  "tool": "Read",
+  "phase": "pre",
+  "status": "initiated",
+  "session": "test-123",
+  "detail": {
+    "file": "/tmp/test.md"
+  }
+}
+{
+  "timestamp": "2025-11-30T17:33:18Z",
+  "tool": "Read",
+  "phase": "pre",
+  "status": "initiated",
+  "session": "test-123",
+  "detail": {
+    "file": "/tmp/test.md"
+  }
+}
