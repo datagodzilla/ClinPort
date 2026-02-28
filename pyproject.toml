@@ -1,0 +1,92 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "clinport"
+version = "0.1.0"
+description = "Clinical Patient Portfolio Builder for RWE Cohort Studies"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "QuantumHelix.ai", email = "dev@quantumhelix.ai"}]
+keywords = ["clinical", "fhir", "omop", "nlp", "rag", "medgemma", "rwe"]
+requires-python = ">=3.11"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Healthcare Industry",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    # FHIR
+    "fhirclient>=4.1.0",
+    "fhir.resources>=7.1.0",
+    # BigQuery / OMOP
+    "google-cloud-bigquery>=3.10.0",
+    "google-cloud-bigquery-storage>=2.22.0",
+    "pandas>=2.1.0",
+    "pandas-gbq>=0.19.0",
+    "db-dtypes>=1.1.1",
+    # NLP
+    "transformers>=4.35.0",
+    "torch>=2.1.0",
+    "spacy>=3.7.0",
+    "scispacy>=0.5.4",
+    # LLM / RAG
+    "anthropic>=0.20.0",
+    "chromadb>=0.4.18",
+    "langchain>=0.1.0",
+    "langchain-anthropic>=0.1.0",
+    "sentence-transformers>=2.2.2",
+    # API
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "pydantic>=2.4.0",
+    "pydantic-settings>=2.0.0",
+    # Dashboard
+    "streamlit>=1.28.0",
+    "plotly>=5.17.0",
+    "altair>=5.1.0",
+    # Utils
+    "python-dotenv>=1.0.0",
+    "loguru>=0.7.2",
+    "httpx>=0.25.0",
+    "tenacity>=8.2.3",
+    "rich>=13.6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.12.0",
+    "ruff>=0.1.0",
+    "black>=23.10.0",
+    "mypy>=1.6.0",
+    "pre-commit>=3.5.0",
+    "httpx>=0.25.0",
+]
+
+[project.scripts]
+clinport = "clinport.cli:main"
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+select = ["E", "F", "I", "N", "W", "UP"]
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "--cov=src/clinport --cov-report=term-missing --cov-report=html"
